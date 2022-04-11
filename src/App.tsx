@@ -1,23 +1,17 @@
 import Todos from "./component/Todo";
-import Todo from "./model/todo";
-import AddTodo from "./component/AddTodo";
-import { useState } from "react";
-function App() {
-	const [todos, setTodos] = useState<Todo[]>([]);
-	const handleTodo = (text: string) => {
-		const newTodo = new Todo(text);
-		setTodos((prevTodo) => [...prevTodo, newTodo]);
-	};
+import { useDispatch, useSelector } from "react-redux";
 
-	const handleRemove = (id: string) => {
-		setTodos((prevTodo) => {
-			return prevTodo.filter((todo) => todo.id != id);
-		});
-	};
+import AddTodo from "./component/AddTodo";
+import { RootState } from "./store/reducers/todoReducers";
+import { ADD_TODO, REMOVE_TODO } from "./store/constants/todo";
+
+function App() {
+	const state = useSelector((state: RootState) => state);
+
 	return (
 		<>
-			<AddTodo addTodo={handleTodo} />
-			<Todos items={todos} removeTodo={handleRemove} />
+			<AddTodo />
+			<Todos items={state} />
 		</>
 	);
 }

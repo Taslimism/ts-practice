@@ -1,14 +1,19 @@
 import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { ADD_TODO } from "../store/constants/todo";
+import Todo from "../model/todo";
 
-const AddTodo: React.FC<{ addTodo: (text: string) => void }> = (props) => {
+const AddTodo: React.FC = (props) => {
 	const formInput = useRef<HTMLInputElement>(null);
+	const dispatch = useDispatch();
 
 	const submitHanlder = (event: React.FormEvent) => {
 		event.preventDefault();
 
 		let inputText = formInput.current?.value;
 		if (!inputText || inputText.trim().length === 0) return;
-		props.addTodo(inputText);
+		const newTodo = new Todo(inputText);
+		dispatch({ type: ADD_TODO, payload: newTodo });
 	};
 
 	return (

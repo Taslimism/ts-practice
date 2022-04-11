@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { REMOVE_TODO } from "../store/constants/todo";
+import Todo from "../model/todo";
 
-const EachTodo: React.FC<{ text: string; removeTodo: () => void }> = (
-	props
-) => {
+const EachTodo: React.FC<{ text: string; id: string }> = (props) => {
 	const [deleteVisibility, setDeleteVisibility] = useState(false);
+	const dispatch = useDispatch();
 
-	const deleteHandler = () => {};
+	const removeThisTodo = (id: string) => {
+		dispatch({ type: REMOVE_TODO, payload: id });
+	};
 
 	return (
 		<div
@@ -19,7 +23,7 @@ const EachTodo: React.FC<{ text: string; removeTodo: () => void }> = (
 			<li>{props.text}</li>
 			{deleteVisibility && (
 				<button
-					onClick={() => props.removeTodo()}
+					onClick={() => removeThisTodo(props.id)}
 					className="px-2  py-1 bg-red-500 rounded-lg">
 					Delete
 				</button>
