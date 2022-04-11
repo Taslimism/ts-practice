@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { REMOVE_TODO } from "../store/constants/todo";
-import Todo from "../model/todo";
 
 const EachTodo: React.FC<{ text: string; id: string }> = (props) => {
 	const [deleteVisibility, setDeleteVisibility] = useState(false);
