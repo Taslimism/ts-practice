@@ -1,10 +1,10 @@
-import { ADD_TODO, REMOVE_TODO, EDIT_TODO } from "../constants/todo";
+import { ADD_TODO, REMOVE_TODO } from "../constants/todo";
 import Todo from "../../model/todo";
 
 const todoReducers = (
 	state: Todo[] = [],
 	actions: { type: string; payload: Todo | string }
-): Todo[] => {
+) => {
 	switch (actions.type) {
 		case ADD_TODO:
 			if (typeof actions.payload === "string") return state;
@@ -16,8 +16,6 @@ const todoReducers = (
 				(item) => item.id != actions.payload
 			);
 			return newData;
-		case EDIT_TODO:
-			return state;
 		default:
 			return state;
 	}

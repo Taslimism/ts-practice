@@ -5,12 +5,12 @@ import AddTodo from "./component/AddTodo";
 import { RootState } from "./store/reducers/todoReducers";
 
 function App() {
-	const state = useSelector((state: RootState) => state);
+	const todos = useSelector((state: RootState) => state);
 
 	return (
 		<>
 			<AddTodo />
-			<Todos items={state} />
+			<Todos items={todos} />
 		</>
 	);
 }

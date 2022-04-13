@@ -6,6 +6,7 @@ import store from "./store/store";
 
 const root: HTMLDivElement | null = document.querySelector("#root");
 if (!root) throw new Error("Failed to find the root element");
+
 ReactDOM.createRoot(root).render(
 	<Provider store={store}>
 		<App />

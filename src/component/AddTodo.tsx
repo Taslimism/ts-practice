@@ -3,13 +3,12 @@ import { useDispatch } from "react-redux";
 import { ADD_TODO } from "../store/constants/todo";
 import Todo from "../model/todo";
 
-const AddTodo: React.FC = (props) => {
+const AddTodo: React.FC = () => {
 	const formInput = useRef<HTMLInputElement>(null);
 	const dispatch = useDispatch();
 
 	const submitHanlder = (event: React.FormEvent) => {
 		event.preventDefault();
-
 		let inputText = formInput.current?.value;
 		if (!inputText || inputText.trim().length === 0) return;
 		const newTodo = new Todo(inputText);
